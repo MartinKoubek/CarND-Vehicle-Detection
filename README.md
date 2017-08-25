@@ -106,13 +106,16 @@ I trained a linear SVM using...
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
 Original
-![Car 1]( ./output_images/2__original_image.png)   
+<img src="./output_images/2__original_image.png" alt="hog" width="400"> 
+
 Scale 1
-![1]( ./output_images/2_image1.png) 
+<img src="./output_images/2_image1.png" alt="hog" width="400"> 
+
 Scale 1.5
-![2]( ./output_images/2_image2.png) 
+<img src="./output_images/2_image2.png" alt="hog" width="400"> 
+
 Scale 2
-![3]( ./output_images/2_image3.png) 
+<img src="./output_images/2_image3.png" alt="hog" width="400"> 
 
 ### Image with false positive windows:
 
@@ -128,11 +131,6 @@ Result image:
 
 * gray squeres: box from one frame
 * blue: final box from multiple frames
-
-### Here is heatmap from multiple frames
-
-![0]( ./output_images/3_heat_image.jpeg) 
-
 
 ### Video Implementation
 
@@ -163,6 +161,7 @@ def set_box_list(self, box_list):
 
  What could you do to make it more robust?
  
+ * I have learned a great deal about color spectrums, image gradients and support vector classifiers. Even though this method of image recognition is slow (processing speed) but it was a great learning tool for me due to its customizability.
  * I would prefere more robust classifier based on neural networks. The SVM classifier is OK but I would prefer more precise accuracy.
  * Tracking pipeline may be more robust then implemented
 
