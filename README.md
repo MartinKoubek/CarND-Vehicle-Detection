@@ -33,7 +33,7 @@ Vehicles
 
 Original | Bin patial | Hist patial 
 :------:|:------:|:-------:
-![Car 1]( ./output_images/1.jpeg)   |  ![Car 2]( ./output_images/1_1_True_binspatial.jpeg) |  ![Car 3]( ./output_images/1_1_True_histpatial.jpeg) 
+![Car 1]( ./output_images/1.jpeg)   |  ![Car 2]( ./output_images/1_1_True_binspatial.jpeg | width=100) |  ![Car 3]( ./output_images/1_1_True_histpatial.jpeg) 
 ![Car 2]( ./output_images/2.jpeg)   |  ![Car 2]( ./output_images/1_2_True_binspatial.jpeg) |  ![Car 3]( ./output_images/1_2_True_histpatial.jpeg) 
 ![Car 3]( ./output_images/3.jpeg)   |  ![Car 2]( ./output_images/1_3_True_binspatial.jpeg) |  ![Car 3]( ./output_images/1_3_True_histpatial.jpeg) 
 
@@ -157,11 +157,13 @@ def set_box_list(self, box_list):
         heat[heat <= self.threshold] = 0        
         self.heatmap_treshold = np.clip(heat, 0, 255)
 ```
----
 
-###Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+## Discussion
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+ What could you do to make it more robust?
+ 
+ * I would prefere more robust classifier based on neural networks. The SVM classifier is OK but I would prefer more precise accuracy.
+ * Tracking pipeline may be more robust then implemented
+
 
