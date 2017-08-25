@@ -86,41 +86,77 @@ I trained a linear SVM using...
 
 ####1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I decided to search random window positions at random scales all over the image and came up with this (ok just kidding I didn't actually ;):
-
-![alt text][image3]
+```
+        self.y_start_stop = (380,550)
+        scale = 1
+        out_img1, box_list1 = self.find_cars(img, scale)
+        
+        self.y_start_stop = (400,600)
+        scale = 1.5
+        out_img2, box_list2 = self.find_cars(img, scale)
+        
+        self.y_start_stop = (400,670)
+        scale = 2.0
+        out_img3, box_list3 = self.find_cars(img, scale)
+```
 
 ####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
+
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
-![alt text][image4]
----
+Original
+![Car 1]( ./output_images/2__original_image.png)   
+Scale 1
+![1]( ./output_images/2_image1.png) 
+Scale 1.5
+![2]( ./output_images/2_image2.png) 
+Scale 2
+![3]( ./output_images/2_image3.png) 
+
+### Image with false positive windows:
+
+![0]( ./output_images/4_windows_image.png) 
+
+### Here is a frame and its corresponding heatmaps:
+
+![0]( ./output_images/4_tracking_heat_image.png) 
+
+Result image:
+
+![0]( ./output_images/4_tracking_image.png) 
+
+* gray squeres: box from one frame
+* blue: final box from multiple frames
+
+### Here is heatmap from multiple frames
+
+![0]( ./output_images/3_heat_image.jpeg) 
+
 
 ### Video Implementation
 
 ####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./out_project_video.mp4) or [youtube link](https://youtu.be/hraAwMG7U_g)
 
 
 ####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
-Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
+```
+def set_box_list(self, box_list):
+        heat = np.zeros_like(self.image[:,:,0]).astype(np.float)
+        for box in box_list:
+            # Add += 1 for all pixels inside each bbox
+            # Assuming each "box" takes the form ((x1, y1), (x2, y2))
+            heat[box[0][1]:box[1][1], box[0][0]:box[1][0]] += 1
+        
+        self.heatmap_orig = np.clip(heat, 0, 255)
 
-### Here are six frames and their corresponding heatmaps:
-
-![alt text][image5]
-
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
-![alt text][image6]
-
-### Here the resulting bounding boxes are drawn onto the last frame in the series:
-![alt text][image7]
-
-
-
+        heat[heat <= self.threshold] = 0        
+        self.heatmap_treshold = np.clip(heat, 0, 255)
+```
 ---
 
 ###Discussion
