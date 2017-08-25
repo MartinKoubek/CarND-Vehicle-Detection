@@ -11,46 +11,72 @@ The goals / steps of this project are the following:
 * Run your pipeline on a video stream (start with the test_video.mp4 and later implement on full project_video.mp4) and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
 * Estimate a bounding box for vehicles detected.
 
-[//]: # (Image References)
-[image1]: ./examples/car_not_car.png
-[image2]: ./examples/HOG_example.jpg
-[image3]: ./examples/sliding_windows.jpg
-[image4]: ./examples/sliding_window.jpg
-[image5]: ./examples/bboxes_and_heat.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
-[video1]: ./project_video.mp4
-
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
-
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
-
-You're reading it!
-
 ###Histogram of Oriented Gradients (HOG)
-
-####1. Explain how (and identify where in your code) you extracted HOG features from the training images.
-
-The code for this step is contained in the first code cell of the IPython notebook (or in lines # through # of the file called `some_file.py`).  
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
 
-![alt text][image1]
+Vehicle images:
+
+![Car 1]( ./output_images/1.jpeg)   |  ![Car 2]( ./output_images/2.jpeg) |  ![Car 3]( ./output_images/3.jpeg) |  ![Car 4]( ./output_images/4.jpeg)
+
+Non - vehicle images:
+
+![NCar 1]( ./output_images/extra1.png)   | ![NCar 1]( ./output_images/extra1.png) 
 
 I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
 
+Vehicles
+
+Original | Bin patial | Hist patial 
+:------:|:------:|:-------:
+![Car 1]( ./output_images/1.jpeg)   |  ![Car 2]( ./output_images/1_1_True_binspatial.jpeg) |  ![Car 3]( ./output_images/1_1_True_histpatial.jpeg) 
+![Car 2]( ./output_images/2.jpeg)   |  ![Car 2]( ./output_images/1_2_True_binspatial.jpeg) |  ![Car 3]( ./output_images/1_2_True_histpatial.jpeg) 
+![Car 3]( ./output_images/3.jpeg)   |  ![Car 2]( ./output_images/1_3_True_binspatial.jpeg) |  ![Car 3]( ./output_images/1_3_True_histpatial.jpeg) 
+
+Non-vehicles
+
+Original | Bin patial | Hist patial 
+:------:|:------:|:-------:
+![Car 1]( ./output_images/extra1.png)   |  ![Car 2]( ./output_images/1_1_False_binspatial.jpeg) |  ![Car 3]( ./output_images/1_1_False_histpatial.jpeg) 
+
 Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
+Vehicles
 
-![alt text][image2]
+Original | HOG 
+:------:|:------:
+![Car 1]( ./output_images/1.jpeg)   |  ![Hog]( ./output_images/1_1_True_hog_All.jpeg) 
+![Car 2]( ./output_images/2.jpeg)   |  ![Hog]( ./output_images/1_2_True_hog_All.jpeg) 
+![Car 3]( ./output_images/3.jpeg)   |  ![Hog]( ./output_images/1_3_True_hog_All.jpeg) 
+
+
+Non-vehicles
+
+Original | Hog
+:------:|:------:
+![Car 1]( ./output_images/extra1.png)   |  ![Hog]( ./output_images/1_1_False_hog_All.jpeg) 
 
 ####2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters and...
+I tried various combinations of parameters and use following:
+
+```
+  color_space = 'YCrCb' # Can be RGB, HSV, LUV, HLS, YUV, YCrCb
+  orient = 9  # HOG orientations
+  pix_per_cell = 8 # HOG pixels per cell
+  cell_per_block = 2 # HOG cells per block
+  hog_channel = "ALL" # Can be 0, 1, 2, or "ALL"
+  spatial_size = (32, 32) # Spatial binning dimensions
+  hist_bins = 32    # Number of histogram bins
+  spatial_feat = True # Spatial features on or off
+  hist_feat = True # Histogram features on or off
+  hog_feat = True # HOG features on or off
+  y_start_stop = [500, 670] # Min and max in y to search in slide_window()
+```
 
 ####3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
