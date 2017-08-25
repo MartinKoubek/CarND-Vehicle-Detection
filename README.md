@@ -33,15 +33,15 @@ Vehicles
 
 Original | Bin patial | Hist patial 
 :------:|:------:|:-------:
-![Car 1]( ./output_images/1.jpeg)   |  ![Car 2]( ./output_images/1_1_True_binspatial.jpeg | width=100) |  ![Car 3]( ./output_images/1_1_True_histpatial.jpeg) 
-![Car 2]( ./output_images/2.jpeg)   |  ![Car 2]( ./output_images/1_2_True_binspatial.jpeg) |  ![Car 3]( ./output_images/1_2_True_histpatial.jpeg) 
-![Car 3]( ./output_images/3.jpeg)   |  ![Car 2]( ./output_images/1_3_True_binspatial.jpeg) |  ![Car 3]( ./output_images/1_3_True_histpatial.jpeg) 
+![Car 1]( ./output_images/1.jpeg)   |  <img src="./output_images/1_1_True_binspatial.jpeg" alt="" width="200"> |  <img src="./output_images/1_1_True_histpatial.jpeg" alt="" width="200"> 
+![Car 2]( ./output_images/2.jpeg)   |  <img src="./output_images/1_2_True_binspatial.jpeg" alt="" width="200"> |  <img src="./output_images/1_2_True_histpatial.jpeg" alt="" width="200">
+![Car 3]( ./output_images/3.jpeg)   |  <img src="./output_images/1_3_True_binspatial.jpeg" alt="" width="200"> |  <img src="./output_images/1_3_True_histpatial.jpeg" alt="" width="200">
 
 Non-vehicles
 
 Original | Bin patial | Hist patial 
 :------:|:------:|:-------:
-![Car 1]( ./output_images/extra1.png)   |  ![Car 2]( ./output_images/1_1_False_binspatial.jpeg) |  ![Car 3]( ./output_images/1_1_False_histpatial.jpeg) 
+![Car 1]( ./output_images/extra1.png)   |  <img src="./output_images/1_1_False_binspatial.jpeg" alt="" width="200"> |  <img src="./output_images/1_1_False_histpatial.jpeg" alt="" width="200"> 
 
 Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
@@ -49,16 +49,16 @@ Vehicles
 
 Original | HOG 
 :------:|:------:
-![Car 1]( ./output_images/1.jpeg)   |  ![Hog]( ./output_images/1_1_True_hog_All.jpeg) 
-![Car 2]( ./output_images/2.jpeg)   |  ![Hog]( ./output_images/1_2_True_hog_All.jpeg) 
-![Car 3]( ./output_images/3.jpeg)   |  ![Hog]( ./output_images/1_3_True_hog_All.jpeg) 
+![Car 1]( ./output_images/1.jpeg)   |  <img src="./output_images/1_1_True_hog_All.jpeg" alt="hog" width="200"> 
+![Car 2]( ./output_images/2.jpeg)   |  <img src="./output_images/1_2_True_hog_All.jpeg" alt="hog" width="200">  
+![Car 3]( ./output_images/3.jpeg)   |  <img src="./output_images/1_3_True_hog_All.jpeg" alt="hog" width="200"> 
 
 
 Non-vehicles
 
 Original | Hog
 :------:|:------:
-![Car 1]( ./output_images/extra1.png)   |  ![Hog]( ./output_images/1_1_False_hog_All.jpeg) 
+![Car 1]( ./output_images/extra1.png)   |  <img src="./output_images/1_1_False_hog_All.jpeg" alt="hog" width="200"> 
 
 ####2. Explain how you settled on your final choice of HOG parameters.
 
