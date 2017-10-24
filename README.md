@@ -14,7 +14,7 @@ The goals / steps of this project are the following:
 <img src="./output_images/4_tracking_image.png" alt="hog" width="600">
 
 [youtube link video](https://youtu.be/hraAwMG7U_g)
-
+[private camera video](https://youtu.be/cVLcPlI6bpM)
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
